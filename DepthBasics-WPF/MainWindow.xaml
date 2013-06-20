@@ -1,0 +1,109 @@
+﻿<Window x:Class="Microsoft.Samples.Kinect.DepthBasics.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Object recognition" Loaded="WindowLoaded" Closing="WindowClosing" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="516" d:DesignWidth="852" SizeToContent="WidthAndHeight">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="MediumGreyBrush" Color="#ff6e6e6e"/>
+        <SolidColorBrush x:Key="KinectPurpleBrush" Color="#ff52318f"/>
+        <SolidColorBrush x:Key="KinectBlueBrush" Color="#ff00BCF2"/>
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+        </Style>
+        <Style TargetType="{x:Type Button}" x:Key="SnapshotButton" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" Background="Transparent">
+                                <TextBlock x:Name="SnapText" Text="{TemplateBinding Content}" TextAlignment="Left"  VerticalAlignment="Center" Foreground="{StaticResource KinectPurpleBrush}" FontSize="15" />
+                                <Grid Margin="9,0,0,0">
+                                    <Image x:Name="SnapNormal" Source="Images\SnapNormal.png" Stretch="None" HorizontalAlignment="Center"/>
+                                    <Image x:Name="SnapHover" Source="Images\SnapHover.png" Stretch="None" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Visibility" Value="Collapsed" TargetName="SnapNormal"/>
+                                <Setter Property="Visibility" Value="Visible" TargetName="SnapHover"/>
+                                <Setter Property="Foreground" Value="{StaticResource KinectBlueBrush}" TargetName="SnapText"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}" x:Key="SquareCheckBox" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" Background="Transparent">
+                                <Grid x:Name="SquareCheckBoxChecked">
+                                    <Image x:Name="CheckedNormal" Source="Images\CheckedNormal.png" Stretch="None" HorizontalAlignment="Center"/>
+                                    <Image x:Name="CheckedHover" Source="Images\CheckedHover.png" Stretch="None" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                                </Grid>
+                                <Grid x:Name="SquareCheckBoxUnchecked" Visibility="Collapsed">
+                                    <Image x:Name="UncheckedNormal" Source="Images\UncheckedNormal.png" Stretch="None" HorizontalAlignment="Center"/>
+                                    <Image x:Name="UncheckedHover" Source="Images\UncheckedHover.png" Stretch="None" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                                </Grid>
+                                <TextBlock x:Name="SquareCheckBoxText" Text="{TemplateBinding Content}" TextAlignment="Left"  VerticalAlignment="Center" Foreground="{StaticResource KinectPurpleBrush}" FontSize="15"  Margin="9,0,0,0"/>                          
+                            </StackPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="false">
+                                <Setter Property="Visibility" Value="Collapsed" TargetName="SquareCheckBoxChecked"/>
+                                <Setter Property="Visibility" Value="Visible" TargetName="SquareCheckBoxUnchecked"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Visibility" Value="Collapsed" TargetName="CheckedNormal"/>
+                                <Setter Property="Visibility" Value="Collapsed" TargetName="UncheckedNormal"/>
+                                <Setter Property="Visibility" Value="Visible" TargetName="CheckedHover"/>
+                                <Setter Property="Visibility" Value="Visible" TargetName="UncheckedHover"/>
+                                <Setter Property="Foreground" Value="{StaticResource KinectBlueBrush}" TargetName="SquareCheckBoxText"/>
+                            </Trigger>
+                       </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>        
+    </Window.Resources>
+
+    <Grid Name="layoutGrid" Margin="10 0 10 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="381*"/>
+            <RowDefinition Height="96"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="1" Margin="0,0,170,72">
+            <Image Name="Image" Width="640" Height="480" HorizontalAlignment="Left"  MouseLeftButtonUp="Image_MouseLeftButtonUp" />
+        </DockPanel>
+        <Viewbox Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" Grid.Row="1"></Viewbox>
+        <StatusBar Grid.Row="2" HorizontalAlignment="Stretch" Name="statusBar" VerticalAlignment="Bottom" Background="White" Foreground="{StaticResource MediumGreyBrush}">
+            <StatusBarItem Padding="0 0 0 10"></StatusBarItem>
+        </StatusBar>
+        <TextBox Grid.Row="1" Height="128" HorizontalAlignment="Right" Margin="0,0,170,34" Name="textBox1" VerticalAlignment="Bottom" Width="628" VerticalScrollBarVisibility="Visible" Grid.RowSpan="2" />
+        <Button Content="Print summ" Grid.Row="1" Height="28" HorizontalAlignment="Right" Name="button1" VerticalAlignment="Top" Width="87" Click="button1_Click" Margin="0,112,0,0" />
+        <Button Content="Init mask" Height="23" HorizontalAlignment="Right" Name="button3" VerticalAlignment="Top" Width="87" Click="button3_Click" Margin="0,54,0,0" Grid.Row="1" />
+        <Button Content="Stop/Start" Grid.Row="1" Height="26" HorizontalAlignment="Right" Name="button4" VerticalAlignment="Top" Width="87" Click="button4_Click" Margin="0,146,0,0" />
+        <TextBlock Name="statusBarText" Margin="0,0,216,12" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="582">Press init mask.</TextBlock>
+        <Label Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="735,0,0,0" Name="label1" VerticalAlignment="Top" Width="75" Content="Mask Num" />
+        <Button Content="Show Mask" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="723,83,0,0" Name="button5" VerticalAlignment="Top" Width="87" Click="button5_Click" />
+        <ComboBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="723,25,0,0" Name="comboBox1" VerticalAlignment="Top" Width="87" ItemsSource="{Binding}" DataContext="{Binding}" Text="0">
+            <ComboBoxItem Content="0" />
+            <ComboBoxItem Content="1" />
+            <ComboBoxItem Content="2" />
+            <ComboBoxItem Content="3" />
+            <ComboBoxItem Content="4" />
+            <ComboBoxItem Content="5" />
+            <ComboBoxItem />
+        </ComboBox>
+        <Button Content="Find Object" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="723,178,0,0" Name="button2" VerticalAlignment="Top" Width="87" Click="button2_Click" />
+        <Button Content="Send Info" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="723,236,0,0" Name="button6" VerticalAlignment="Top" Width="87" Click="button6_Click" />
+        <Button Content="Show Next" Grid.Row="1" HorizontalAlignment="Left" Margin="723,207,0,151" Name="button7" Width="87" VerticalAlignment="Top" Click="button7_Click" />
+        <TextBox Grid.Row="1" Height="21" HorizontalAlignment="Left" Margin="646,209,0,0" Name="textBox2" VerticalAlignment="Top" Width="52" Text="0" />
+        <Button Content="down" Grid.Row="1" HorizontalAlignment="Left" Margin="735,294,0,0" Name="button8" Width="75" Click="button8_Click" Height="23" VerticalAlignment="Top" />
+        <Button Content="Up" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="735,265,0,0" Name="button9" VerticalAlignment="Top" Width="75" Click="button9_Click" />
+    </Grid>
+</Window>
