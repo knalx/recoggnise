@@ -458,21 +458,21 @@ namespace Microsoft.Samples.Kinect.DepthBasics
             
 
             CascadeMask[3] = new Mask(mH, mW, 13);
-            CascadeMask[3].drawSquare(mH/3, mW/4, 0, 0, 1);
+            CascadeMask[3].drawSquare(mH/3, mW/4, 0, 0, 3);
             CascadeMask[3].drawSquare(mH / 3, mW / 4, mH/3, 0, 3);
             CascadeMask[3].drawSquare(mH / 3, mW / 4, (mH / 3)*2, 0, 2);
 
-            CascadeMask[3].drawSquare(mH / 3, mW / 4, 0, mW/4, 5);
-            CascadeMask[3].drawSquare(mH / 3, mW / 4, mH / 3, mW / 4, 4);
-            CascadeMask[3].drawSquare(mH / 3, mW / 4, (mH / 3) * 2, mW / 4, 6);
+            CascadeMask[3].drawSquare(mH / 3, mW / 4, 0, mW/4, 1);
+            CascadeMask[3].drawSquare(mH / 3, mW / 4, mH / 3, mW / 4, 1);
+            CascadeMask[3].drawSquare(mH / 3, mW / 4, (mH / 3) * 2, mW / 4, 2);
 
-            CascadeMask[3].drawSquare(mH / 3, mW / 4, 0, mW / 2, 7);
-            CascadeMask[3].drawSquare(mH / 3, mW / 4, mH / 3, mW / 2, 9);
-            CascadeMask[3].drawSquare(mH / 3, mW / 4, (mH / 3) * 2, mW / 2, 8);
+            CascadeMask[3].drawSquare(mH / 3, mW / 4, 0, mW / 2, 1);
+            CascadeMask[3].drawSquare(mH / 3, mW / 4, mH / 3, mW / 2, 1);
+            CascadeMask[3].drawSquare(mH / 3, mW / 4, (mH / 3) * 2, mW / 2, 2);
 
-            CascadeMask[3].drawSquare(mH / 3, mW / 4, 0, (mW / 4 )*3, 11);
-            CascadeMask[3].drawSquare(mH / 3, mW / 4, mH / 3, (mW / 4) * 3, 10);
-            CascadeMask[3].drawSquare(mH / 3, mW / 4, (mH / 3) * 2, (mW / 4) * 3, 12);
+            CascadeMask[3].drawSquare(mH / 3, mW / 4, 0, (mW / 4 )*3, 3);
+            CascadeMask[3].drawSquare(mH / 3, mW / 4, mH / 3, (mW / 4) * 3, 3);
+            CascadeMask[3].drawSquare(mH / 3, mW / 4, (mH / 3) * 2, (mW / 4) * 3, 2);
             CascadeMask[3].calcPrimeSum(vectorToAr(480, 640));
 
             this.textBox1.Text += "\n Mask Coords: x " + CascadeMask[3].xStart + " y" + CascadeMask[3].yStart ;

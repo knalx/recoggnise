@@ -101,9 +101,15 @@
         </ComboBox>
         <Button Content="Find Object" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="723,178,0,0" Name="button2" VerticalAlignment="Top" Width="87" Click="button2_Click" />
         <Button Content="Send Info" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="723,236,0,0" Name="button6" VerticalAlignment="Top" Width="87" Click="button6_Click" />
-        <Button Content="Show Next" Grid.Row="1" HorizontalAlignment="Left" Margin="723,207,0,151" Name="button7" Width="87" VerticalAlignment="Top" Click="button7_Click" />
-        <TextBox Grid.Row="1" Height="21" HorizontalAlignment="Left" Margin="646,209,0,0" Name="textBox2" VerticalAlignment="Top" Width="52" Text="0" />
+        <Button Content="Show Next" Grid.Row="1" HorizontalAlignment="Left" Margin="723,207,0,0" Name="button7" Width="87" VerticalAlignment="Top" Click="button7_Click" Height="23" />
+        <TextBox Grid.Row="1" Height="21" HorizontalAlignment="Left" Margin="646,209,0,0" Name="textBox2" VerticalAlignment="Top" Width="71" Text="0" />
         <Button Content="down" Grid.Row="1" HorizontalAlignment="Left" Margin="735,294,0,0" Name="button8" Width="75" Click="button8_Click" Height="23" VerticalAlignment="Top" />
         <Button Content="Up" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="735,265,0,0" Name="button9" VerticalAlignment="Top" Width="75" Click="button9_Click" />
+        <ComboBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="646,178,0,0" Name="comboBox2" VerticalAlignment="Top" Width="71" ItemsSource="{Binding}">
+            <ComboBoxItem Content="Alg 1" />
+            <ComboBoxItem Content="Alg 2" />
+            <ComboBoxItem Content="Alg 3" />
+            <ComboBoxItem Content="Alg 4" />
+        </ComboBox>
     </Grid>
 </Window>
